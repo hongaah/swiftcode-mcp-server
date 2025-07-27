@@ -190,7 +190,7 @@ docker run -it swiftcode-mcp
 ### Generate Vue List Component
 
 ```javascript
-// Use the generate_vue_list tool
+// Use the generate_sfc_client tool
 {
   "page_config": {
     "cn": "产品列表",

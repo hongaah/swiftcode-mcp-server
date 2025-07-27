@@ -12,9 +12,10 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@swiftcode/api": ["node_modules/@swiftcode/api/dist/types/index.d.ts"]
+      "@swiftcode/api": ["node_modules/@swiftcode/api/dist/types/index.d.ts"],
+      "@swiftcode/list": ["node_modules/@swiftcode/list/dist/types/index.d.ts"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "global.d.ts"],
   "exclude": ["node_modules"]
 }
