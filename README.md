@@ -15,15 +15,18 @@ Swiftcode MCP Server is a Model Context Protocol (MCP) server that provides auto
 ## Tools
 
 ### 1. `generate_api_client`
+
 Generate TypeScript API client from Swagger/OpenAPI specification.
 
 **Parameters:**
+
 - `swagger_url` (string): URL to Swagger/OpenAPI JSON specification
 - `swagger_content` (string): Direct Swagger/OpenAPI JSON or YAML content
 - `output_format` (string): Output format ("typescript" or "javascript", default: "typescript")
 - `include_types` (boolean): Whether to generate TypeScript type definitions (default: true)
 
 **Example:**
+
 ```javascript
 {
   "swagger_url": "https://api.example.com/swagger.json",
@@ -33,15 +36,18 @@ Generate TypeScript API client from Swagger/OpenAPI specification.
 ```
 
 ### 2. `generate_vue_list`
+
 Generate Vue list page component with table and filters.
 
 **Parameters:**
+
 - `page_config` (object): Page configuration with Chinese/English names and features
 - `filters` (object): Filter configuration for search functionality
 - `table_columns` (object): Table column definitions
 - `generate_mock` (boolean): Whether to generate mock data (default: false)
 
 **Example:**
+
 ```javascript
 {
   "page_config": {
@@ -68,15 +74,19 @@ Generate Vue list page component with table and filters.
 ```
 
 ### 3. `get_templates`
+
 Get available code generation templates.
 
 **Parameters:**
+
 - `template_type` (string): Type of templates to retrieve ("vue-list", "api-client", or "all")
 
 ### 4. `validate_swagger`
+
 Validate Swagger/OpenAPI specification.
 
 **Parameters:**
+
 - `swagger_url` (string): URL to Swagger/OpenAPI specification
 - `swagger_content` (string): Direct Swagger/OpenAPI content
 
@@ -92,16 +102,19 @@ The server provides several helpful prompts:
 ## Supported Technologies
 
 ### Frontend Frameworks
+
 - Vue 3 with Composition API
 - Element Plus UI components
 - TypeScript support
 
 ### API Specifications
+
 - Swagger 2.0
 - OpenAPI 3.0+
 - JSON and YAML formats
 
 ### Generated Code Features
+
 - TypeScript interfaces and types
 - Vue 3 reactive components
 - Element Plus form and table components
@@ -117,17 +130,9 @@ Add to your MCP client configuration:
 ```json
 {
   "mcpServers": {
-    "Swiftcode": {
+    "swiftcode-npm": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@swiftcode/mcp-server"
-      ],
-      "env": {
-        "SWIFTCODE_OUTPUT_DIR": "./generated"
-      },
-      "disabled": false,
-      "autoApprove": []
+      "args": ["-y", "@swiftcode/mcp"]
     }
   }
 }
@@ -136,17 +141,27 @@ Add to your MCP client configuration:
 ### Local Development
 
 ```bash
-# Install dependencies
-npm install
+pnpm install
 
-# Build the project
-npm run build
+# 编译 mcp
+ppm build
 
-# Start the server
-npm start
+# 启动 mcp 调试器
+pnpm inspector
+```
 
-# For development with hot reload
-npm run watch
+Add to your MCP client configuration:
+
+```json
+{
+  "mcpServers": {
+    // 本地开发
+    "swiftcode-local": {
+      "command": "node",
+      "args": ["swiftcode-mcp-server/dist/index.js"]
+    }
+  }
+}
 ```
 
 ### Docker
@@ -243,4 +258,3 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ## Support
 
 For questions, issues, or feature requests, please visit the [GitHub repository](https://github.com/hongaah/swiftcode) or contact the development team.
-
