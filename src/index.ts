@@ -11,12 +11,8 @@ import {
 } from '@modelcontextprotocol/sdk/types.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { Swagger2InterfaceOutput } from '@swiftcode/api'
-import { Template2ListOutput } from '@swiftcode/list'
-import { createTemplate } from 'swiftcode'
-import second from 'swiftcode/template.js'
+import { Template2ListOutput, createTemplate } from '@swiftcode/list'
 import path from 'node:path'
-
-const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
 const TOOLS: Tool[] = [
   {
@@ -63,8 +59,12 @@ const TOOLS: Tool[] = [
           type: 'string',
           description: 'sfc 模板文件路径 / sfc template file path',
         },
+        dir: {
+          type: 'string',
+          description: 'workspace dir',
+        },
       },
-      required: ['source'],
+      required: ['source', 'dir'],
     },
   },
 ]
@@ -86,14 +86,10 @@ const PROMPTS: Prompt[] = [
     description: '下载 swiftcode 生成 sfc 的模板文件',
     arguments: [
       {
-        name: 'filename',
+        name: 'template',
         description: '',
         required: false,
       },
-      // {
-      //   name:'dir',
-
-      // }
     ],
   },
   {
@@ -198,25 +194,13 @@ class SwiftcodeMCP {
         const { dir } = args
         // 直接使用导入的模板内容，写入到目标目录
         try {
-          const fs = await import('fs')
-          const path = await import('path')
-
-          // 获取当前工作目录
-          const currentWorkingDir = dir
-          // 目标文件路径
-          const targetTemplatePath = path.join(currentWorkingDir, 'template.js')
-
-          // 直接使用已导入的模板内容
-          const templateContent = typeof second === 'string' ? second : JSON.stringify(second, null, 2)
-          
-          // 写入模板文件到目标目录
-          fs.writeFileSync(targetTemplatePath, templateContent, 'utf8')
+          createTemplate('template.js', '', dir)
 
           return {
             content: [
               {
                 type: 'text',
-                text: `SFC template file created successfully at: ${targetTemplatePath}`,
+                text: `SFC template file created successfully at ${path.join(dir, 'template.js')}`,
               },
             ],
           }
@@ -229,13 +213,15 @@ class SwiftcodeMCP {
         }
       }
       case 'generate_sfc_client': {
-        const { source } = args
+        const { source, dir } = args
         try {
           // 判断 source 是否是文件路径
           const isFilePath = source.startsWith('/')
           const filePath = isFilePath ? `/${source}` : source
+          const dirPath = path.join(dir, '.lists')
           await Template2ListOutput({
             source: filePath,
+            dir: dirPath
           })
           return {
             content: [

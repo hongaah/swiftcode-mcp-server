@@ -1,6 +1,6 @@
 {
   "name": "@swiftcode/mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "MCP server for Swiftcode - Automatic code generation tool for Swagger API and Vue components",
   "type": "module",
   "bin": {
@@ -33,9 +33,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.7.0",
     "@swiftcode/api": "^1.0.2",
-    "@swiftcode/list": "^1.0.2",
+    "@swiftcode/list": "^1.0.3",
     "shx": "^0.3.4",
-    "swiftcode": "^1.0.4",
     "typescript": "^5.8.2"
   },
   "devDependencies": {
