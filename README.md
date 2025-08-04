@@ -10,6 +10,10 @@ English | [简体中文](https://github.com/hongaah/swiftcode-mcp-server/blob/ma
 
 Swiftcode MCP Server is a server based on the Model Context Protocol (MCP), focusing on automated code generation to support modern web development workflows. It can automatically generate TypeScript API clients from Swagger/OpenAPI specifications and quickly generate Vue list page components based on templates, greatly improving frontend and backend development efficiency.
 
+<a href="https://glama.ai/mcp/servers/@hongaah/swiftcode-mcp-server">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@hongaah/swiftcode-mcp-server/badge" alt="Swiftcode Server MCP server" />
+</a>
+
 ## Features
 
 - **Swagger/OpenAPI to TypeScript**: Automatically generate TypeScript API clients and type definitions.
